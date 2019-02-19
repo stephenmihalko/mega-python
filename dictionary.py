@@ -5,7 +5,11 @@ def definition(word):
 	word = word.lower()
 	# This is the most likely result and the result that requires the least actual work!
 	if word in data:
-		return data[word]
+		# There's definitely a more pythonic way to do this...
+		str = ""
+		for el in data[word]:
+			str += ("%s\n" % el)
+		return str[:-1];
 	else:
 		potentials = difflib.get_close_matches(word, data.keys())
 		if len(potentials) > 0:
