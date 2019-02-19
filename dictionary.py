@@ -9,7 +9,7 @@ def definition(word):
 	else:
 		potentials = difflib.get_close_matches(word, data.keys())
 		if len(potentials) > 0:
-			return ("The word does not exist. Did you mean '%s'?" % potentials[0])
+			return data[potentials[0]] if input("The word does not exist. Did you mean '%s'? Enter Y or N: " % potentials[0]) == "Y" else "Sorry about that."
 		else:
 			return "The word does not exist. Please try again."
 
