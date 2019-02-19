@@ -8,7 +8,7 @@ def definition(word):
 		# There's definitely a more pythonic way to do this...
 		str = ""
 		for el in data[word]:
-			str += ("%s\n" % el)
+			str += ("- %s\n" % el)
 		return str[:-1];
 	else:
 		potentials = difflib.get_close_matches(word, data.keys())
