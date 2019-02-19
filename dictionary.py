@@ -1,6 +1,7 @@
 import json
 
 def definition(word):
+	word = word.lower()
 	if word in data:
 		return data[word]
 	else:
