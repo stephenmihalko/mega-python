@@ -1,7 +1,7 @@
 import json
 
 def definition(word):
-	if word in data.keys():
+	if word in data:
 		return data[word]
 	else:
 		return "The word does not exist."
