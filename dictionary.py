@@ -1,5 +1,11 @@
 import json
 
+def definition(word):
+	if word in data.keys():
+		return data[word]
+	else:
+		return "The word does not exist."
+
 # This is a dictionary where words are keys and definitions are values.
 data = json.load(open("data.json"))
 
@@ -7,10 +13,6 @@ data = json.load(open("data.json"))
 wd = input("Please enter a word: ")
 
 # Get the definition and print it.
-print(defintion(wd))
+print(definition(wd))
 
-def definition(word):
-	if word in data.keys():
-		return data[word]
-	else:
-		return "The word does not exist."
+
