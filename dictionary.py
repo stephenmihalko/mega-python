@@ -14,12 +14,12 @@ def definition(word):
 			return "The word does not exist. Please try again."
 
 # This is a dictionary where words are keys and definitions are values.
-data = json.load(open("data.json"))
+with open("data.json") as fh:
+	data = json.load(fh)
 
-# Ask the user for a word.
-wd = input("Please enter a word: ")
+	# Ask the user for a word.
+	wd = input("Please enter a word: ")
 
-# Get the definition and print it.
-print(definition(wd))
-
+	# Get the definition and print it.
+	print(definition(wd))
 
