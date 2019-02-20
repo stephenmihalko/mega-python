@@ -4,7 +4,6 @@
 import folium
 
 # Create the basemap layer
-the_geographic_center = [39.8285354,-98.579482]	# LAT north, LONG WEST
-# TODO: add zoom_start to Map constructor
-basemap = folium.Map(location=the_geographic_center)
+geographic_center = [39.8285354,-98.579482]	# LAT north, LONG WEST
+basemap = folium.Map(location=geographic_center, zoom_start=4, tiles="Mapbox Bright")
 basemap.save("basemap.html")
