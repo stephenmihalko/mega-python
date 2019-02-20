@@ -6,6 +6,14 @@ import folium
 
 from_file = True
 
+def pick_color(elevation):
+	if elevation < 1000:
+		return "green"
+	elif elevation < 3000:
+		return "yellow"
+	else:
+		return "red"
+
 # Create the basemap layer
 geographic_center = [39.8285354,-98.579482]	# LAT north, LONG WEST
 basemap = folium.Map(location=geographic_center, zoom_start=4, tiles="Mapbox Bright")
@@ -21,7 +29,7 @@ if from_file:
 	elevs = list(data["ELEV"])
 
 for lt, ln, nm, el in zip(lats, lons, names, elevs):
-	fg.add_child(folium.Marker(location=[lt, ln], popup=("%s is %s m high" % (nm, el)), icon=folium.Icon(color="blue")))
+	fg.add_child(folium.Marker(location=[lt, ln], popup=("%s is %s m high" % (nm, el)), icon=folium.Icon(color=pick_color(el)))
 
 basemap.add_child(fg)
 
