@@ -9,8 +9,10 @@ from_file = True
 def pick_color(elevation):
 	if elevation < 1000:
 		return "green"
-	elif elevation < 3000:
+	elif elevation < 2000:
 		return "yellow"
+	elif elevation < 3000:
+		return "orange"
 	else:
 		return "red"
 
