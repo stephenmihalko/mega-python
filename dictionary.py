@@ -19,6 +19,8 @@ def definition(word):
 	else:
 		# Getting the four best matches
 		potentials = difflib.get_close_matches(word.lower(), data.keys(), n=4)
+		
+		# TODO: add recursion to account for people misspelling. Let them choose the word and then spit the definition out.
 		if len(potentials) > 0:
 			return data[potentials[0]] if input("The word does not exist. Did you mean '%s'? Enter Y or N: " % potentials[0]) == "Y" else "Sorry about that."
 		else:
