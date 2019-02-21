@@ -17,12 +17,12 @@ def definition(word):
 	
 	# Maybe they misspelled it.
 	else:
-		# Getting the four best matches
-		potentials = difflib.get_close_matches(word.lower(), data.keys(), n=4)
+		# Getting the best matches
+		potentials = difflib.get_close_matches(word.lower(), data.keys())
 		
-		# TODO: add recursion to account for people misspelling. Let them choose the word and then spit the definition out.
+		# Ask if they wanted the closest word in the dictionary, then recursion to get that definition.
 		if len(potentials) > 0:
-			return data[potentials[0]] if input("The word does not exist. Did you mean '%s'? Enter Y or N: " % potentials[0]) == "Y" else "Sorry about that."
+			return definition(data[potentials[0]] if input("The word does not exist. Did you mean '%s'? Enter Y or N: " % potentials[0])) == "Y" else "Sorry about that."
 		else:
 			return "The word does not exist. Please try again."
 
