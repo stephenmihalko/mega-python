@@ -17,12 +17,16 @@ def definition(word):
 	
 	# Maybe they misspelled it.
 	else:
-		# Getting the best matches
-		potentials = difflib.get_close_matches(word.lower(), data.keys())
+		# Getting the four best matches
+		potentials = difflib.get_close_matches(word.lower(), data.keys(), n=4)
 		
 		# Ask if they wanted the closest word in the dictionary, then recursion to get that definition.
 		if len(potentials) > 0:
-			return definition(data[potentials[0]] if input("The word does not exist. Did you mean '%s'? Enter Y or N: " % potentials[0])) == "Y" else "Sorry about that."
+			print("The word is not in the dictionary. Did you mean one of the following?")
+			for ndx, el in enumerate(potentials):
+				print(ndx+1, el)
+			choice = input("0 No, none of these\n")
+			return definition(potentials[int(choice)-1]) if int(choice)-1 < len(potentials) and int(choice) != 0 else "Sorry about that."
 		else:
 			return "The word does not exist. Please try again."
 
