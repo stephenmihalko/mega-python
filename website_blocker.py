@@ -7,10 +7,13 @@ hosts_path = "hosts"
 redirect = "127.0.0.1"
 sites = ["www.facebook.com", "mail.google.com"]
 
+morning = 8
+evening = 16
+
 while True:
 	with open(hosts_path, "r+") as hosts:
 		# If Monday-Friday (0-5) and between 8a and 4p
-		if datetime.now().weekday() < 5 and 8 <= datetime.now().hour < 20:
+		if datetime.now().weekday() < 5 and morning <= datetime.now().hour < evening:
 			content = hosts.read()
 			# Check to see if each site is in the content.
 			for site in sites:
