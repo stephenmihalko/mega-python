@@ -20,6 +20,17 @@ while True:
 				# Put the site in the file.
 				else:
 					hosts.write(redirect + " " + site + "\n")
+		else:
+                        # Read the lines into a list of strings this time
+                        content = hosts.readlines()
+                        # Start the cursor at the beginning of the file
+                        hosts.seek(0)
+                        # Go through each line in the list to check for sites
+                        for line in content:
+                                if not any(website in line for website in sites):
+                                        hosts.write(line)
+                        # Cut everything off after the stuff we wrote
+                        hosts.truncate()
 
 	# Wait a minute so as not to tax resources.
 	time.sleep(60)
