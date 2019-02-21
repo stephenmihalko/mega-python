@@ -34,7 +34,7 @@ elevs = list(data["ELEV"])
 
 # Zip lists and go through each volcano information.
 for lt, ln, nm, el in zip(lats, lons, names, elevs):
-	fgv.add_child(folium.Marker(location=[lt, ln], popup=("%s is %s m high" % (nm, el)), icon=folium.Icon(color=pick_color(el)))
+	fgv.add_child(folium.Marker(location=[lt, ln], popup=("%s is %s m high" % (nm, el)), icon=folium.Icon(color=pick_color(el))))
 
 basemap.add_child(fgv)
 
@@ -42,6 +42,7 @@ basemap.add_child(fgv)
 fgc = folium.FeatureGroup(name="World Population")
 fgc.add_child(folium.GeoJson(data=open("world.json", "r", encoding="utf-8-sig").read()),
 	      style_function=lambda x: {"fillColor":"green"} if x["properties"]["POP2005"] < 20000000 else
-	      {"fillColor":"orange") if x["properties"]["POP2005"] < 200000000 else {"fillColor":"red"})
+	      {"fillColor":"orange"} if x["properties"]["POP2005"] < 200000000 else {"fillColor":"red"})
+basemap.add_child(fgc)
 				  
 basemap.save("map.html")
