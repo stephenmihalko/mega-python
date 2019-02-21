@@ -15,6 +15,8 @@ def pick_color(elevation):
 		return "red"
 
 # Create the basemap layer
+
+# The coordinates of the geographic center of the continental U.S.
 geographic_center = [39.8285354,-98.579482]	# LAT north, LONG WEST
 basemap = folium.Map(location=geographic_center, zoom_start=4, tiles="Mapbox Bright")
 
