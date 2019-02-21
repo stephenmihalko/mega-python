@@ -41,8 +41,8 @@ basemap.add_child(fgv)
 # Have another feature group for map colors.
 fgc = folium.FeatureGroup(name="World Population")
 fgc.add_child(folium.GeoJson(data=open("world.json", "r", encoding="utf-8-sig").read()),
-	      style_function=lambda x: {"fillColor":"green"} if x["properties"]["POP2005"] < 20000000 else
-	      {"fillColor":"orange"} if x["properties"]["POP2005"] < 200000000 else {"fillColor":"red"})
+	      style_function=lambda x: {"fillColor": "green" if x["properties"]["POP2005"] < 20000000 else
+	      "orange" if x["properties"]["POP2005"] < 200000000 else "red"})
 basemap.add_child(fgc)
 				  
 basemap.save("map.html")
