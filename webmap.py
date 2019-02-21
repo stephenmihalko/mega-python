@@ -6,9 +6,9 @@ import folium
 # Choosing the color of the volcano marker based on elevation.
 def pick_color(elevation):
 	if elevation < 1000:
-		return "green"
+		return "blue"
 	elif elevation < 2000:
-		return "yellow"
+		return "green"
 	elif elevation < 3000:
 		return "orange"
 	else:
@@ -34,7 +34,7 @@ elevs = list(data["ELEV"])
 
 # Zip lists and go through each volcano information.
 for lt, ln, nm, el in zip(lats, lons, names, elevs):
-	fgv.add_child(folium.Marker(location=[lt, ln], popup=("%s is %s m high" % (nm, el)), icon=folium.Icon(color=pick_color(el))))
+	fgv.add_child(folium.Marker(location=[lt, ln], popup=("%s is %s m above sea level" % (nm, el)), icon=folium.Icon(color=pick_color(el))))
 
 basemap.add_child(fgv)
 
@@ -44,5 +44,7 @@ fgc.add_child(folium.GeoJson(data=open("world.json", "r", encoding="utf-8-sig").
 	      style_function=lambda x: {"fillColor": "green" if x["properties"]["POP2005"] < 20000000 else
 	      "orange" if x["properties"]["POP2005"] < 200000000 else "red"}))
 basemap.add_child(fgc)
+
+basemap.add_child(folium.LayerControl())
 				  
 basemap.save("map.html")
