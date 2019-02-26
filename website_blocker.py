@@ -2,8 +2,13 @@ import platform
 import time
 from datetime import datetime
 
-hosts_path = "hosts"
-#hosts_path = r"C:\Windows\System32\drivers\etc\hosts" if platform.system() == "Windows" else "/etc/hosts"
+testing = True
+
+if testing:
+	hosts_path = "hosts"
+else:
+	hosts_path = r"C:\Windows\System32\drivers\etc\hosts" if platform.system() == "Windows" else "/etc/hosts"
+
 redirect = "127.0.0.1"
 sites = ["www.facebook.com", "mail.google.com"]
 
