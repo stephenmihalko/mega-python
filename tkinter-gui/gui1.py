@@ -4,8 +4,12 @@ from tkinter import *
 # Create an empty window.
 window = Tk()
 
+# This is a callback function for when you press a button!
+def mi_to_km():
+	print("You did it!")
+
 # Create a button and tell it what window to go to
-b1 = Button(window, text="Execute")
+b1 = Button(window, text="Execute", command=mi_to_km)
 # Put the button on the window better
 b1.grid(row=0, column=0)
 
