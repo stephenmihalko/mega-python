@@ -6,8 +6,13 @@ window = Tk()
 
 # Create a button and tell it what window to go to
 b1 = Button(window, text="Execute")
-# Put the button on the window
-b1.pack()
+# Put the button on the window better
+b1.grid(row=0, column=0)
+
+# Create an entry box
+e1 = Entry(window)
+# Put the button on the window better
+e1.grid(row=0, column=1)
 
 
 # This is to keep the window going - otherwise it exits manually.
