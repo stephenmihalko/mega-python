@@ -14,6 +14,9 @@ e1 = Entry(window)
 # Put the button on the window better
 e1.grid(row=0, column=1)
 
+# Create a text box
+t1 = Text(window, height=1, width=20)
+t1.grid(row=0, column=2)
 
 # This is to keep the window going - otherwise it exits manually.
 window.mainloop()
