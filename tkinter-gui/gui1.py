@@ -6,7 +6,7 @@ window = Tk()
 
 # This is a callback function for when you press a button!
 def mi_to_km():
-	print(e1_val.get())
+	t1.insert(END, e1_val.get())
 
 # Create a button and tell it what window to go to
 b1 = Button(window, text="Execute", command=mi_to_km)
