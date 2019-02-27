@@ -13,7 +13,7 @@ window = Tk()
 def mi_to_km():
 	# Clear the text box - thanks stackoverflow!
 	t1.delete(1.0, END)
-	if num_pattern.match(e1_val.get()) is not None: 
+	if num_pattern.fullmatch(e1_val.get()) is not None: 
 		t1.insert(END, int(e1_val.get())/1.6)
 	else:
 		t1.insert(END, "Improper entry")
