@@ -1,6 +1,11 @@
 # This is better than import tkinter because it puts us in the tkinter namespace.
 from tkinter import *
 
+# Regular expressions to check if they've actually entered a number!
+import re
+
+num_pattern = re.compile(r"^\d+$")
+
 # Create an empty window.
 window = Tk()
 
@@ -8,7 +13,10 @@ window = Tk()
 def mi_to_km():
 	# Clear the text box - thanks stackoverflow!
 	t1.delete(1.0, END)
-	t1.insert(END, int(e1_val.get())/1.6)
+	if num_pattern.match(e1_val.get()) is not None: 
+		t1.insert(END, int(e1_val.get())/1.6)
+	else:
+		t1.insert(END, "Improper entry")
 
 # Create a button and tell it what window to go to
 b1 = Button(window, text="Execute", command=mi_to_km)
