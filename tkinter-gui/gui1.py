@@ -6,15 +6,16 @@ window = Tk()
 
 # This is a callback function for when you press a button!
 def mi_to_km():
-	print("You did it!")
+	print(e1_val.get())
 
 # Create a button and tell it what window to go to
 b1 = Button(window, text="Execute", command=mi_to_km)
 # Put the button on the window better
 b1.grid(row=0, column=0)
 
+e1_val = StringVar()
 # Create an entry box
-e1 = Entry(window)
+e1 = Entry(window, textvariable=e1_val)
 # Put the button on the window better
 e1.grid(row=0, column=1)
 
