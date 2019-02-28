@@ -7,22 +7,33 @@ conversions = [
                 [2.23694, 3.6, 1],
               ]
 
+# The "is this only numbers" pattern
+num_patt = re.compile(r"^\d*\.?\d*$")
+
 # I'm putting the callback function up here. Come and stop me!
 def convert():
+
+    def inserts(mph, kmh, mps):
+            mph_t.insert(END, mph)
+            kmh_t.insert(END, kmh)
+            mps_t.insert(END, mps)
+
+    mph = mph_t.get(1.0, END).strip()
+    kmh = kmh_t.get(1.0, END).strip()
+    mps = mps_t.get(1.0, END).strip()
+
     # Clear the boxes.
     mph_t.delete(1.0, END)
     kmh_t.delete(1.0, END)
     mps_t.delete(1.0, END)
 
-    # If there's nothing there, then print error messages.
-    if not mph_t.get("1.0", "end-1c") and not kmh_t.get("1.0", "end-1c") and not mps_t.get("1.0", "end-1c"):
-        mph_t.insert(END, "No value!")
-        kmh_t.insert(END, "No value!")
-        mps_t.insert(END, "No value!")
-	
+    if mph and num_patt.fullmatch(mph):
+        inserts(mph, float(mph)*conversions[0][1], float(mph)*conversions[0][2])
+    elif kmh and num_patt.fullmatch(kmh):
+        inserts(float(kmh)*conversions[1][0], kmh, float(kmh)*conversions[1][2])
+    elif mps and num_patt.fullmatch(mps):
+        inserts(float(mps)*conversions[2][0], float(mps)*conversions[2][1], mps)
 
-# The "is this only numbers" pattern
-num_patt = re.compile(r"^\d+$")
 
 # Create a new window
 win = Tk()
