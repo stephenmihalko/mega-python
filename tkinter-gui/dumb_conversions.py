@@ -14,5 +14,15 @@ win = tk.Tk()
 # Create a button that calls the convert function.
 go_button = tk.Button(win, text="Go!", command=convert)
 
-# This is a box with a static message.
-msg = Message(window, text="Enter speed in mph here:", height=1, width=20)
+msg_ht = 1
+msg_wd = 25
+
+# These are boxes with static messages.
+mph_msg = Message(win, text="miles per hour", height=msg_ht, width=msg_wd)
+kmh_msg = Message(win, text="kilometers per hour", height=msg_ht, width=msg_wd)
+mps_msg = Message(win, text="meters per second", height=msg_ht, width=msg_wd)
+fpf_msg = Message(win, text="furlongs per fortnight", height=msg_ht, width=msg_wd)
+
+
+
+
