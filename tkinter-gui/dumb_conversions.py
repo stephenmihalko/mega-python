@@ -13,3 +13,6 @@ win = tk.Tk()
 
 # Create a button that calls the convert function.
 go_button = tk.Button(win, text="Go!", command=convert)
+
+# This is a box with a static message.
+msg = Message(window, text="Enter speed in mph here:", height=1, width=20)
