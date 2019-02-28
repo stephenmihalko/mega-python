@@ -1,4 +1,4 @@
-from tkinter import *
+import tkinter as tk
 import re
 
 # I'm putting the callback function up here. Come and stop me!
@@ -9,4 +9,7 @@ def convert():
 num_patt = re.compile(r"^\d+$")
 
 # Create a new window
-window = Tk()
+win = tk.Tk()
+
+# Create a button that calls the convert function.
+go_button = tk.Button(win, text="Go!", command=convert)
