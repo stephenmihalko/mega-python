@@ -9,33 +9,42 @@ def get_selected_row(event):
     row = lb.get(index)
 
     # Clear the entry boxes and add the information from the thing you just clicked
-    title_e.delete(0, END)
+    clear_entries()
     title_e.insert(END, row[1])
-    author_e.delete(0, END)
     author_e.insert(END, row[2])
-    year_e.delete(0, END)
     year_e.insert(END, row[3])
+    isbn_e.insert(END, row[4])
+
+def clear_entries():
+    title_e.delete(0, END)
+    author_e.delete(0, END)
+    year_e.delete(0, END)
     isbn_e.delete(0, END)
-    isbn_e.delete(END, row[4])
 
 def view():
     lb.delete(0, END)
     for row in backend.view_all():
-        lb.insert(END, " ".join(row))
+        lb.insert(END, row)
 
 # We need to use these wrappers because we're not allowed to use inputs in the command=? part
 def search():
     lb.delete(0, END)
     for row in backend.search(title_e.get(), author_e.get(), year_e.get(), isbn_e.get()):
-        lb.insert(END, " ".join(row))
+        lb.insert(END, row)
     
 def insert():
     backend.insert(title_e.get(), author_e.get(), year_e.get(), isbn_e.get())
+    view()
 
+def update():
+    backend.update(row[0], title_e.get(), author_e.get(), year_e.get(), isbn_e.get())
+    view()
 
 def delete():
     # The tuple you get from "row" in get_selected_row() starts with the ID
     backend.delete(row[0])
+    view()
+    clear_entries()
 
 gui = Tk()
 
@@ -78,8 +87,8 @@ buttonwidth = 10
 Button(gui, text="View all", width=buttonwidth, command=view).grid(row=2, column=3)
 Button(gui, text="Search entry", width=buttonwidth, command=search).grid(row=3, column=3)
 Button(gui, text="Add entry", width=buttonwidth, command=insert).grid(row=4, column=3)
-Button(gui, text="Update entry", width=buttonwidth).grid(row=5, column=3)
+Button(gui, text="Update entry", width=buttonwidth, command=update).grid(row=5, column=3)
 Button(gui, text="Delete entry", width=buttonwidth, command=delete).grid(row=6, column=3)
-Button(gui, text="Close", width=buttonwidth).grid(row=7, column=3)
+Button(gui, text="Close", width=buttonwidth, command=gui.destroy).grid(row=7, column=3)
 
 gui.mainloop()
