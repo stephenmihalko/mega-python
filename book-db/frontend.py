@@ -3,11 +3,11 @@ import backend
 
 # This parameter has information about the event
 def get_selected_row(event):
+    global row
     # This gives back a tuple, but we only want the first number (the row)
     index = lb.curselection()[0]
     row = lb.get(index)
-    # The tuple you get back from "row" starts with the ID
-    backend.delete(row[0])
+
 
 def view():
     lb.delete(0, END)
@@ -23,6 +23,10 @@ def search():
 def insert():
     backend.insert(title_e.get(), author_e.get(), year_e.get(), isbn_e.get())
 
+
+def delete():
+    # The tuple you get from "row" in get_selected_row() starts with the ID
+    backend.delete(row[0])
 
 gui = Tk()
 
@@ -66,7 +70,7 @@ Button(gui, text="View all", width=buttonwidth, command=view).grid(row=2, column
 Button(gui, text="Search entry", width=buttonwidth, command=search).grid(row=3, column=3)
 Button(gui, text="Add entry", width=buttonwidth, command=insert).grid(row=4, column=3)
 Button(gui, text="Update entry", width=buttonwidth).grid(row=5, column=3)
-Button(gui, text="Delete entry", width=buttonwidth).grid(row=6, column=3)
+Button(gui, text="Delete entry", width=buttonwidth, command=delete).grid(row=6, column=3)
 Button(gui, text="Close", width=buttonwidth).grid(row=7, column=3)
 
 gui.mainloop()
