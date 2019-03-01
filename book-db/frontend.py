@@ -1,4 +1,20 @@
 from tkinter import *
+import backend
+
+def view():
+    lb.delete(0, END)
+    for row in backend.view_all():
+        lb.insert(END, " ".join(row))
+
+# We need to use these wrappers because we're not allowed to use inputs in the command=? part
+def search():
+    lb.delete(0, END)
+    for row in backend.search(title_e.get(), author_e.get(), year_e.get(), isbn_e.get()):
+        lb.insert(END, " ".join(row))
+    
+def insert():
+    backend.insert(title_e.get(), author_e.get(), year_e.get(), isbn_e.get())
+
 
 gui = Tk()
 
@@ -35,9 +51,9 @@ sb.configure(command=lb.yview)
 
 # Buttons
 buttonwidth = 10
-Button(gui, text="View all", width=buttonwidth).grid(row=2, column=3)
-Button(gui, text="Search entry", width=buttonwidth).grid(row=3, column=3)
-Button(gui, text="Add entry", width=buttonwidth).grid(row=4, column=3)
+Button(gui, text="View all", width=buttonwidth, command=view).grid(row=2, column=3)
+Button(gui, text="Search entry", width=buttonwidth, command=search).grid(row=3, column=3)
+Button(gui, text="Add entry", width=buttonwidth, command=insert).grid(row=4, column=3)
 Button(gui, text="Update entry", width=buttonwidth).grid(row=5, column=3)
 Button(gui, text="Delete entry", width=buttonwidth).grid(row=6, column=3)
 Button(gui, text="Close", width=buttonwidth).grid(row=7, column=3)

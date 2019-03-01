@@ -5,7 +5,7 @@ import sqlite3
 def connect():
     conn = sqlite3.connect("books_db.db")
     cur = conn.cursor()
-    cur.execute("CREATE TABLE IF NOT EXISTS Books (id INTEGER PRIMARY KEY, title VARCHAR(100) NOT NULL, author VARCHAR(50) NOT NULL, year INTEGER, isbn VARCHAR(13) NOT NULL")
+    cur.execute("CREATE TABLE IF NOT EXISTS Books (id INTEGER PRIMARY KEY, title VARCHAR(100) NOT NULL, author VARCHAR(50) NOT NULL, year INTEGER, isbn VARCHAR(17) NOT NULL")
     conn.commit()
     conn.close()
 
