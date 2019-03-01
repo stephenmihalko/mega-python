@@ -29,7 +29,17 @@ lb.grid(row=2, column=0, rowspan=6, columnspan=2)
 sb = Scrollbar(gui)
 sb.grid(row=2, column=2, rowspan=6)
 
-# Buttons
+# Link listbox and scrollbar
+lb.configure(yscrollcommand=sb.set)
+sb.configure(command=lb.yview)
 
+# Buttons
+buttonwidth = 10
+Button(gui, text="View all", width=buttonwidth).grid(row=2, column=3)
+Button(gui, text="Search entry", width=buttonwidth).grid(row=3, column=3)
+Button(gui, text="Add entry", width=buttonwidth).grid(row=4, column=3)
+Button(gui, text="Update entry", width=buttonwidth).grid(row=5, column=3)
+Button(gui, text="Delete entry", width=buttonwidth).grid(row=6, column=3)
+Button(gui, text="Close", width=buttonwidth).grid(row=7, column=3)
 
 gui.mainloop()
