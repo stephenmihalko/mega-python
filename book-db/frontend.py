@@ -1,6 +1,14 @@
 from tkinter import *
 import backend
 
+# This parameter has information about the event
+def get_selected_row(event):
+    # This gives back a tuple, but we only want the first number (the row)
+    index = lb.curselection()[0]
+    row = lb.get(index)
+    # The tuple you get back from "row" starts with the ID
+    backend.delete(row[0])
+
 def view():
     lb.delete(0, END)
     for row in backend.view_all():
@@ -48,6 +56,9 @@ sb.grid(row=2, column=2, rowspan=6)
 # Link listbox and scrollbar
 lb.configure(yscrollcommand=sb.set)
 sb.configure(command=lb.yview)
+
+# This tells the Listbox to call get_selected_row when something is selected in it.
+lb.bind("<<ListboxSelect>>", get_selected_row)
 
 # Buttons
 buttonwidth = 10
