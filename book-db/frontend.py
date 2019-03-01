@@ -1,19 +1,22 @@
 from tkinter import *
 import backend
 
+row = (-1,)
+
 # This parameter has information about the event
 def get_selected_row(event):
     global row
-    # This gives back a tuple, but we only want the first number (the row)
-    index = lb.curselection()[0]
-    row = lb.get(index)
+    if len(lb.curselection()) > 0:
+        # This gives back a tuple, but we only want the first number (the row)
+        index = lb.curselection()[0]
+        row = lb.get(index)
 
-    # Clear the entry boxes and add the information from the thing you just clicked
-    clear_entries()
-    title_e.insert(END, row[1])
-    author_e.insert(END, row[2])
-    year_e.insert(END, row[3])
-    isbn_e.insert(END, row[4])
+        # Clear the entry boxes and add the information from the thing you just clicked
+        clear_entries()
+        title_e.insert(END, row[1])
+        author_e.insert(END, row[2])
+        year_e.insert(END, row[3])
+        isbn_e.insert(END, row[4])
 
 def clear_entries():
     title_e.delete(0, END)
@@ -37,16 +40,20 @@ def insert():
     view()
 
 def update():
-    backend.update(row[0], title_e.get(), author_e.get(), year_e.get(), isbn_e.get())
-    view()
+    if len(row) > 1:
+        backend.update(row[0], title_e.get(), author_e.get(), year_e.get(), isbn_e.get())
+        view()
 
 def delete():
-    # The tuple you get from "row" in get_selected_row() starts with the ID
-    backend.delete(row[0])
-    view()
-    clear_entries()
+    if len(row) > 1:
+        # The tuple you get from "row" in get_selected_row() starts with the ID
+        backend.delete(row[0])
+        view()
+        clear_entries()
 
 gui = Tk()
+
+gui.wm_title("Bookstore")
 
 # Static labels
 Label(gui, text="Title").grid(row=0, column=0)

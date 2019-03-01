@@ -22,7 +22,7 @@ def view_all():
 def search(title="", author="", year="", isbn=""):
     conn = sqlite3.connect("books_db.db")
     cur = conn.cursor()
-    cur.execute("SELECT title, author, year, isbn FROM Books WHERE title=? OR author=? OR year=? OR isbn=?", (title, author, year, isbn))
+    cur.execute("SELECT * FROM Books WHERE title=? OR author=? OR year=? OR isbn=?", (title, author, year, isbn))
     rows = cur.fetchall()
     conn.close()
     return rows
