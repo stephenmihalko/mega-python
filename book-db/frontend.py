@@ -8,6 +8,15 @@ def get_selected_row(event):
     index = lb.curselection()[0]
     row = lb.get(index)
 
+    # Clear the entry boxes and add the information from the thing you just clicked
+    title_e.delete(0, END)
+    title_e.insert(END, row[1])
+    author_e.delete(0, END)
+    author_e.insert(END, row[2])
+    year_e.delete(0, END)
+    year_e.insert(END, row[3])
+    isbn_e.delete(0, END)
+    isbn_e.delete(END, row[4])
 
 def view():
     lb.delete(0, END)
