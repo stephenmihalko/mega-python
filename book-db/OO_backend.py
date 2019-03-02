@@ -11,7 +11,7 @@ class BooksBackend:
         self.cur = self.conn.cursor()
 
         self.cur.execute("CREATE TABLE IF NOT EXISTS Books (id INTEGER PRIMARY KEY, title VARCHAR(100) NOT NULL, author VARCHAR(50) NOT NULL, year INTEGER, isbn VARCHAR(17) NOT NULL)")
-        commit()
+        self.commit()
 
     # View all
     def view_all(self):
@@ -28,18 +28,18 @@ class BooksBackend:
     # Add record
     def insert(self, title, author, year, isbn):
         self.cur.execute("INSERT INTO Books VALUES (NULL, ?, ?, ?, ?)", (title, author, year, isbn))
-        commit()
+        self.commit()
         
     # Update record
     def update(self, id, title, author, year, isbn):
         self.cur.execute("UPDATE Books SET title=?, author=?, year=?, isbn=? WHERE id = ?", (title, author, year, isbn, id))
-        commit()
+        self.commit()
         
     # Delete record
     def delete(self, id):
         # We can get away with using only ID because the UI requires the user to select a book from the list and this has the ID.
         self.cur.execute("DELETE FROM Books WHERE id = ?", (id,))
-        commit()
+        self.commit()
 
     # Commit changes
     def commit(self):
