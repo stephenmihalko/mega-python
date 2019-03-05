@@ -1,7 +1,7 @@
 import cv2
 
-#filename = "uganda.jpg"
-filename = "me.jpg"
+filename = "uganda.jpg"
+#filename = "me.jpg"
 
 # Read the picture in color so we can display in color
 pic = cv2.imread(filename, 1)
