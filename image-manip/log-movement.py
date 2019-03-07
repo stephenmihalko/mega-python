@@ -21,12 +21,13 @@ while True:
 	check, this_frame = video_stream.read()
 	this_frame = cv2.cvtColor(this_frame, cv2.COLOR_BGR2GRAY)
 	this_frame = cv2.GaussianBlur(this_frame, (21, 21), 0)
-
-
-
-
-
-
+	
+	# Create a difference frame to detect changes
+	diff_frame = cv2.absdiff(background, this_frame)
+	
+	# Create a binary threshold frame that tells us *where* the two are significantly different
+	pixel_difference = 30
+	thresh_frame = cv2.threshold(diff_frame, pixel_difference, 255, cv2.THRESH_BINARY)[1]
 
 
 
