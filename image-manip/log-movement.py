@@ -5,9 +5,18 @@ import cv2
 # Get the video stream from the webcam
 video_stream = cv2.VideoCapture(0)
 
+# 1. Store the first frame of the video as a background
+check, background = video_stream.read()
 
+# 1b. Gray the background frame
+background = cv2.cvtColor(background, cv2.COLOR_BGR2GRAY)
 
+# 2. Gaussian blur the background to smooth it
+background = cv2.GaussianBlur(background, (21, 21), 0)
 
+# Now loop through the rest of the frames
+while True:
+	
 
 
 
