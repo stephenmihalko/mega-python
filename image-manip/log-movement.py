@@ -30,22 +30,28 @@ while True:
 	thresh_frame = cv2.threshold(diff_frame, pixel_difference, 255, cv2.THRESH_BINARY)[1]
 
 	# Our instructor used the cv2.dilate() method to dilate the picture here, but I want to try without it
+	thresh_frame=cv2.dilate(thresh_frame, None, iterations=2)
 	
 	# 5. Find the contours in the images to see *where* the different things are
-	(_, ctrs, _) = cv2.findContours(thresh_frame.copy(), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+	ctrs, trash = cv2.findContours(thresh_frame.copy(), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+	# For older versions of cv2, use below:
+	# _, ctrs, _ = cv2.findContours(thresh_frame.copy(), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
 	
 	# 6. Go through each contour
-	for contour in ctrs:
-		# 6b. if it's big enough to warrent being called "movement", rectangle it
-		if cv2.contourArea(contour) >= 500:
-			(x, y, w, h) = cv2.boundingRect(contour)
-			color = (0, 255, 0)
-			width = 3
-			# 7. Draw rectangle
-			cv2.rectangle(this_frame, (x, y), (x+w, y+h), color, width)
+        for contour in ctrs:
+                # 6b. if it's big enough to warrent being called "movement", rectangle it
+                if cv2.contourArea(contour) >= 1000:
+                        (x, y, w, h) = cv2.boundingRect(contour)
+                        color = (0, 255, 0)
+                        width = 3
+                        # 7. Draw rectangle
+                        cv2.rectangle(this_frame.copy(), (x, y), (x+w, y+h), color, width)
 	
 	# Show the stream
-	cv2.imshow(this_frame)
+	cv2.imshow("Standard Stream", this_frame)
+	cv2.imshow("Gray", gray_frame)
+	cv2.imshow("Difference", diff_frame)
+	cv2.imshow("Threshold", thresh_frame)
 	
 	# Listen for key press
 	key = cv2.waitKey(1)
