@@ -17,8 +17,10 @@ background = cv2.GaussianBlur(background, (21, 21), 0)
 # Now loop through the rest of the frames
 while True:
 	
-
-
+	# Get the frame, grayscale it, smooth it
+	check, this_frame = video_stream.read()
+	this_frame = cv2.cvtColor(this_frame, cv2.COLOR_BGR2GRAY)
+	this_frame = cv2.GaussianBlur(this_frame, (21, 21), 0)
 
 
 
