@@ -43,16 +43,16 @@ while True:
 	# _, ctrs, _ = cv2.findContours(thresh_frame.copy(), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
 
 	# 6. Go through each contour
-    for contour in ctrs:
-    		# 6b. if it's big enough to warrent being called "movement", rectangle it
-            if cv2.contourArea(contour) >= 1000:
-					# Set "something is here" to 1
-					curr_status = 1
-                	(x, y, w, h) = cv2.boundingRect(contour)
-                	color = (0, 255, 0)
-                    width = 3
-                    # 7. Draw rectangle
-                    cv2.rectangle(this_frame.copy(), (x, y), (x+w, y+h), color, width)
+	for contour in ctrs:
+		# 6b. if it's big enough to warrent being called "movement", rectangle it
+		if cv2.contourArea(contour) >= 1000:
+			# Set "something is here" to 1
+			curr_status = 1
+			(x, y, w, h) = cv2.boundingRect(contour)
+			color = (0, 255, 0)
+			width = 3
+			# 7. Draw rectangle
+			cv2.rectangle(this_frame.copy(), (x, y), (x+w, y+h), color, width)
 
 	# If the status changes, write down the time
 	if curr_status != prev_status:
