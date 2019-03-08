@@ -31,11 +31,11 @@ while True:
 	diff_frame = cv2.absdiff(background, gray_frame)
 
 	# 4. Create a binary threshold frame that tells us *where* the two are significantly different
-	pixel_difference = 30
+	pixel_difference = 50
 	thresh_frame = cv2.threshold(diff_frame, pixel_difference, 255, cv2.THRESH_BINARY)[1]
 
 	# Our instructor used the cv2.dilate() method to dilate the picture here, but I want to try without it
-	thresh_frame=cv2.dilate(thresh_frame, None, iterations=2)
+	#thresh_frame=cv2.dilate(thresh_frame, None, iterations=2)
 
 	# 5. Find the contours in the images to see *where* the different things are
 	ctrs, trash = cv2.findContours(thresh_frame.copy(), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
@@ -45,14 +45,14 @@ while True:
 	# 6. Go through each contour
 	for contour in ctrs:
 		# 6b. if it's big enough to warrent being called "movement", rectangle it
-		if cv2.contourArea(contour) >= 1000:
+		if cv2.contourArea(contour) >= 10000:
 			# Set "something is here" to 1
 			curr_status = 1
 			(x, y, w, h) = cv2.boundingRect(contour)
 			color = (0, 255, 0)
 			width = 3
 			# 7. Draw rectangle
-			cv2.rectangle(this_frame.copy(), (x, y), (x+w, y+h), color, width)
+			cv2.rectangle(this_frame, (x, y), (x+w, y+h), color, width)
 
 	# If the status changes, write down the time
 	if curr_status != prev_status:
