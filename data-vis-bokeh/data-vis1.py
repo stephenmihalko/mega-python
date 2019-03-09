@@ -1,11 +1,13 @@
 from bokeh.plotting import figure
 from bokeh.io import output_file, show
+import pandas
 
 # Make a basic Bokeh line graph
 
 # Your lists must have the same length
-x_data = [1, 2, 3, 4, 5]
-y_data = [3, 5, 6, 8, 9]
+df = pandas.read_csv("somedata.csv")
+x_data = df["x"]
+y_data = df["y"]
 
 # Prepare the html file
 output_file("basicline.html")
